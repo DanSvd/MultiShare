@@ -1,8 +1,12 @@
-<li id="room-<%= room.id %>">
+<li id="<%= room.id %>">
   <%= link_to gravatar_for(room.user, size: 50), room.user %>
   <span class="user"><%= link_to room.user.name, room.user %></span>
-  <span class="content"><%= room.content %></span>
+  <span class="content"><%= room.name %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(room.created_at) %> ago.
+    <% if current_user?(room.user) %>
+      <%= link_to "delete", room, method: :delete,
+                                       data: { confirm: "You sure?" } %>
+    <% end %>
   </span>
 </li>

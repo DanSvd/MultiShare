@@ -68,8 +68,13 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
+  # Defines a proto-feed.
+  # See "Following users" for the full implementation.
+  def feed
+    Room.where("user_id = ?", id)
+  end
 
-  private
+    private
 
     # Converts email to all lower-case.
     def downcase_email

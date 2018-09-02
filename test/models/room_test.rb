@@ -32,7 +32,7 @@ class RoomTest < ActiveSupport::TestCase
 
   test "associated rooms should be destroyed" do
     @user.save
-    @user.microposts.create!(name: "Room2")
+    @user.rooms.create!(name: "Room2")
     assert_difference 'Rooms.count', -1 do
       @user.destroy
     end
